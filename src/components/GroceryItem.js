@@ -69,7 +69,7 @@ export default class GroceryItem extends Component {
                         {/* <td>{grocery.expiration}</td> */}
                         <td>{this.convertDate(expiration)}</td>
                         <td>{category}</td>
-                        <td><Link to={"/edit/" + id}><span ><i className="fas fa-pen"  ></i></span></Link></td>
+                        <td><Link to={"/edit/" + id}><span onClick={() => { value.editGrocery(id) }} ><i className="fas fa-pen"  ></i></span></Link></td>
                         {/* <td ><span onClick={() => removeGrocery(grocery.id)} ><i className="fas fa-trash"></i></span></td> */}
                         <td ><span onClick={() => { value.removeGrocery(id) }} ><i className="fas fa-trash"></i></span></td>
                     </tr>

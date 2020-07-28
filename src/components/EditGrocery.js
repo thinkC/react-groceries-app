@@ -9,68 +9,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default class EditGrocery extends Component {
 
-    state = {
-        name: '',
-        image: '',
-        category: '',
-        expiration: new Date(),
-        qty: ''
-    }
-
-
-    // componentDidMount() {
-    //     this.setGroceries()
-    // }
-
-    //     setGroceries = () => {
-    //         let tempGroceries = [];
-    //         groceriesDB.forEach(item=>{
-    //             const singleItem = [...item];
-    //             tempGroceries = [...tempGroceries, singleItem]
-    //         })
-    //         this.setState(()=>{
-
-    //         })
-
-    //     // return <GroceryConsumer>
-    //     //     {(value) => {
-    //     //         console.log(value)
-    //     //     }}
-    //     // </GroceryConsumer>
-
-    // }
-
-    handleChangeName = (e) => {
-        this.setState({
-            name: e.target.value
-        })
-    }
-
-    handleChangeImage = (e) => {
-        this.setState({
-            image: e.target.value
-        })
-    }
-
-    handleChangeCategory = (e) => {
-        this.setState({
-            category: e.target.value
-        })
-    }
-
-    handleChangeExpiration = (e) => {
-        this.setState({
-            expiration: e.target.value
-        })
-    }
-
-    handleChangeQty = (e) => {
-        this.setState({
-            qty: e.target.value
-        })
-    }
-
-
     render() {
 
         return (
@@ -78,22 +16,16 @@ export default class EditGrocery extends Component {
             <div className="container">
                 <GroceryConsumer >
                     {(value) => {
-                        //console.log(value)
-                        //console.log(this.props)
-                        this.handleSubmit = (e) => {
-                            e.preventDefault();
-                            value.editGrocery(this.state)
+                        console.log(value)
+                        console.log(value.id)
 
-                            this.props.history.push('/')
-                        }
-                        // value.convertDate(1595886543865)
-                        return <form onSubmit={this.handleSubmit}>
+                        return <form onSubmit={() => { value.onSaveEdit(value.id) }}>
                             <div className="form-group">
                                 <label htmlFor="Name" >Name</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={this.handleChangeName}
-                                    value={this.state.name}
+                                    onChange={(e) => { value.updateValue(e, 'name') }}
+                                    value={value.name}
                                     required
                                 />
 
@@ -102,8 +34,8 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="Image" >Image</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={this.handleChangeImage}
-                                    value={this.state.image}
+                                    onChange={(e) => { value.updateValue(e, 'image') }}
+                                    value={value.image}
                                     required
                                 />
 
@@ -111,9 +43,9 @@ export default class EditGrocery extends Component {
                             <div className="form-group">
                                 <div className="form-control">
                                     <label htmlFor="Quantity" >Quantity</label>
-                                    <input type="number"
-                                        onChange={this.handleChangeQty}
-                                        value={this.state.qty}
+                                    <input type="text"
+                                        onChange={(e) => { value.updateValue(e, 'qty') }}
+                                        value={value.qty}
                                         required
                                     />
                                 </div>
@@ -123,13 +55,19 @@ export default class EditGrocery extends Component {
                             {/* <div className="form-group">
                                 <div className="form-control">
                                     <label htmlFor="ExpirationDate">Expiration</label>
-                                    <DatePicker selected={value.convertDate(value.groceries.expiration).selected}
+                                    <DatePicker selected={value.convertDate(value.expiration).selected}
+
+                                        required
+                                    />
+                                    <DatePicker selected={value.expiration.selected}
 
                                         required
                                     />
 
                                 </div>
                             </div> */}
+
+
                             {/* <div className="form-group">
                     <label htmlFor="ChemicalName" >Category</label>
                     <select class="custom-select mr-sm-2" id="">
@@ -145,8 +83,8 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="ChemicalName" >Category</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={this.handleChangeCategory}
-                                    value={this.state.category}
+                                    onChange={(e) => { value.updateValue(e, 'category') }}
+                                    value={value.category}
                                     required
                                 />
 
@@ -164,6 +102,93 @@ export default class EditGrocery extends Component {
                 </GroceryConsumer>
             </div>
         )
+
+        // return (
+        //     <div className="container">
+        //         <GroceryConsumer>
+        //             {(value) => (
+        //                 <div>
+        //                     <form onSubmit={value.onSaveEdit(value.id)}>
+        //                         <div className="form-group">
+        //                             <label htmlFor="Name" >Name</label>
+        //                             <input type="text"
+        //                                 className="form-control"
+        //                                 onChange={(e) => { value.updateValue(e, 'name') }}
+        //                                 value={value.name}
+        //                                 required
+        //                             />
+
+        //                         </div>
+        //                         <div className="form-group">
+        //                             <label htmlFor="Image" >Image</label>
+        //                             <input type="text"
+        //                                 className="form-control"
+        //                                 onChange={(e) => { value.updateValue(e, 'image') }}
+        //                                 value={value.image}
+        //                                 required
+        //                             />
+
+        //                         </div>
+        //                         <div className="form-group">
+        //                             <div className="form-control">
+        //                                 <label htmlFor="Quantity" >Quantity</label>
+        //                                 <input type="text"
+        //                                     onChange={(e) => { value.updateValue(e, 'qty') }}
+        //                                     value={value.qty}
+        //                                     required
+        //                                 />
+        //                             </div>
+        //                         </div>
+
+
+        //                         {/* <div className="form-group">
+        //                         <div className="form-control">
+        //                             <label htmlFor="ExpirationDate">Expiration</label>
+        //                             <DatePicker selected={value.convertDate(value.expiration).selected}
+
+        //                                 required
+        //                             />
+        //                             <DatePicker selected={value.expiration.selected}
+
+        //                                 required
+        //                             />
+
+        //                         </div>
+        //                     </div> */}
+
+
+        //                         {/* <div className="form-group">
+        //             <label htmlFor="ChemicalName" >Category</label>
+        //             <select class="custom-select mr-sm-2" id="">
+        //                 <option selected>Choose...</option>
+        //                 <option value="1">Vegetable</option>
+        //                 <option value="2">Grain</option>
+        //                 <option value="3">Milk</option>
+        //             </select>
+
+        //         </div> */}
+
+        //                         <div className="form-group">
+        //                             <label htmlFor="ChemicalName" >Category</label>
+        //                             <input type="text"
+        //                                 className="form-control"
+        //                                 onChange={(e) => { value.updateValue(e, 'category') }}
+        //                                 value={value.category}
+        //                                 required
+        //                             />
+
+        //                         </div>
+
+        //                         <div className="form-group center">
+        //                             <button type="submit" className="btn btn-primary">Edit</button>
+        //                         </div>
+
+        //                     </form>
+        //                 </div>
+        //             )}
+        //         </GroceryConsumer>
+        //     </div>
+        // )
     }
 }
 

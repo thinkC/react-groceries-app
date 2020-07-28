@@ -7,7 +7,14 @@ import { v4 } from 'uuid';
 const GroceryContext = createContext();
 class GroceryProvider extends Component {
     state = {
-        groceries: groceriesDB
+        groceries: groceriesDB,
+        id: '',
+        name: '',
+        qty: '',
+        expiration: new Date(),
+        category: '',
+        image: '',
+        updateEdit: []
     }
 
 
@@ -62,7 +69,63 @@ class GroceryProvider extends Component {
     }
 
     editGrocery = (id) => {
-        console.log(id)
+        let tempGroceries = this.state.groceries;
+        const index = tempGroceries.indexOf(this.getGrocery(id));
+        const selectedGrocery = tempGroceries[index];
+        this.setState({
+            id: selectedGrocery['id'],
+            name: selectedGrocery['name'],
+            qty: selectedGrocery['qty'],
+            expiration: selectedGrocery['expiration'],
+            image: selectedGrocery['image'],
+            category: selectedGrocery['category']
+        })
+    }
+
+    updateValue = (e, value1) => {
+        if (value1 === 'name') {
+            this.state.name = e.target.value
+        }
+        if (value1 === 'image') {
+            this.state.image = e.target.value
+        }
+        if (value1 === 'expiration') {
+            this.state.expiration = e.target.value
+        }
+        if (value1 === 'category') {
+            this.state.category = e.target.value
+        }
+        const tempArr = [
+            this.state.id,
+            this.state.name,
+            this.state.image,
+            this.state.expiration,
+            this.state.qty,
+            this.state.category
+        ]
+        this.setState({
+            updateEdit: tempArr
+        })
+
+    }
+
+    onSaveEdit = (id) => {
+        if (id !== '') {
+            const savedRecord = this.state.groceries;
+            const index = savedRecord.indexOf(this.getGrocery(id));
+            const record = savedRecord[index];
+            record['name'] = this.state.updateEdit[0];
+            record['image'] = this.state.updateEdit[1];
+            record['expiration'] = this.state.updateEdit[2];
+            record['qty'] = this.state.updateEdit[3];
+            record['category'] = this.state.updateEdit[4];
+            this.setState({
+                groceries: [...this.state.groceries],
+                id: '', name: '', image: '', expiration: '', qty: '', category: ''
+            })
+        }
+        console.log(this.state)
+        this.props.history.push('/')
     }
 
 
@@ -75,7 +138,9 @@ class GroceryProvider extends Component {
                 convertDate: this.convertDate,
                 addGrocery: this.addGrocery,
                 removeGrocery: this.removeGrocery,
-                editGrocery: this.editGrocery
+                editGrocery: this.editGrocery,
+                onSaveEdit: this.onSaveEdit,
+                updateValue: this.updateValue
             }}>
                 {this.props.children}
             </GroceryContext.Provider>
