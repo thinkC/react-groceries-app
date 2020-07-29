@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { GroceryConsumer } from '../context';
 import { GroceryDB, groceriesDB } from '../data';
@@ -19,7 +20,7 @@ export default class EditGrocery extends Component {
                         console.log(value)
                         console.log(value.id)
 
-                        return <form onSubmit={() => { value.onSaveEdit(value.id) }}>
+                        return <form >
                             <div className="form-group">
                                 <label htmlFor="Name" >Name</label>
                                 <input type="text"
@@ -91,7 +92,7 @@ export default class EditGrocery extends Component {
                             </div>
 
                             <div className="form-group center">
-                                <button type="submit" className="btn btn-primary">Edit</button>
+                                <button onClick={() => { value.onSaveEdit(value.id) }} type="submit" className="btn btn-primary"><Link to="/">Save</Link></button>
                             </div>
 
                         </form>

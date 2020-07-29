@@ -72,6 +72,7 @@ class GroceryProvider extends Component {
         let tempGroceries = this.state.groceries;
         const index = tempGroceries.indexOf(this.getGrocery(id));
         const selectedGrocery = tempGroceries[index];
+        //console.log(selectedGrocery)
         this.setState({
             id: selectedGrocery['id'],
             name: selectedGrocery['name'],
@@ -80,6 +81,7 @@ class GroceryProvider extends Component {
             image: selectedGrocery['image'],
             category: selectedGrocery['category']
         })
+        console.log(this.state)
     }
 
     updateValue = (e, value1) => {
@@ -95,6 +97,9 @@ class GroceryProvider extends Component {
         if (value1 === 'category') {
             this.state.category = e.target.value
         }
+        if (value1 === 'qty') {
+            this.state.qty = e.target.value
+        }
         const tempArr = [
             this.state.id,
             this.state.name,
@@ -103,35 +108,41 @@ class GroceryProvider extends Component {
             this.state.qty,
             this.state.category
         ]
+        console.log(tempArr)
         this.setState({
             updateEdit: tempArr
         })
-
+        console.log(this.state)
     }
 
     onSaveEdit = (id) => {
+
         if (id !== '') {
+            console.log(id)
             const savedRecord = this.state.groceries;
+            console.log(savedRecord)
             const index = savedRecord.indexOf(this.getGrocery(id));
             const record = savedRecord[index];
-            record['name'] = this.state.updateEdit[0];
-            record['image'] = this.state.updateEdit[1];
-            record['expiration'] = this.state.updateEdit[2];
-            record['qty'] = this.state.updateEdit[3];
-            record['category'] = this.state.updateEdit[4];
+            console.log(record)
+            record['name'] = this.state.updateEdit[1];
+            record['image'] = this.state.updateEdit[2];
+            record['expiration'] = this.state.updateEdit[3];
+            record['qty'] = this.state.updateEdit[4];
+            record['category'] = this.state.updateEdit[5];
             this.setState({
                 groceries: [...this.state.groceries],
                 id: '', name: '', image: '', expiration: '', qty: '', category: ''
             })
+            console.log(this.state)
+            console.log(this.state.updateEdit)
+
         }
-        console.log(this.state)
-        this.props.history.push('/')
     }
 
 
 
     render() {
-        console.log(this.state.groceries)
+        //console.log(this.state.groceries)
         return (
             <GroceryContext.Provider value={{
                 ...this.state,
