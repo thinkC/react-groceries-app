@@ -19,7 +19,7 @@ export default class EditGrocery extends Component {
                     {(value) => {
                         console.log(value)
                         console.log(value.id)
-
+                        console.log(value.expiration)
                         return <form >
                             <div className="form-group">
                                 <label htmlFor="Name" >Name</label>
@@ -53,20 +53,20 @@ export default class EditGrocery extends Component {
                             </div>
 
 
-                            {/* <div className="form-group">
+                            <div className="form-group">
                                 <div className="form-control">
                                     <label htmlFor="ExpirationDate">Expiration</label>
                                     <DatePicker selected={value.convertDate(value.expiration).selected}
 
                                         required
                                     />
-                                    <DatePicker selected={value.expiration.selected}
+                                    {/* <DatePicker selected={value.expiration.selected}
 
                                         required
-                                    />
+                                    /> */}
 
                                 </div>
-                            </div> */}
+                            </div>
 
 
                             {/* <div className="form-group">

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { GroceryConsumer } from '../context';
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -33,9 +32,9 @@ export default class AddGrocery extends Component {
         })
     }
 
-    handleChangeExpiration = (e) => {
+    handleChangeExpiration = (date) => {
         this.setState({
-            expiration: e.target.value
+            expiration: date
         })
     }
 
@@ -62,7 +61,8 @@ export default class AddGrocery extends Component {
                                 name: '',
                                 image: '',
                                 qty: '',
-                                category: ''
+                                category: '',
+                                expiration: new Date()
                             })
                             this.props.history.push('/')
                         }
@@ -100,16 +100,14 @@ export default class AddGrocery extends Component {
                             </div>
 
 
-                            {/* <div className="form-group">
+                            <div className="form-group">
                                 <div className="form-control">
                                     <label htmlFor="ExpirationDate">Expiration</label>
-                                    <DatePicker selected={value.convertDate(value.groceries.expiration).selected}
 
-                                        required
-                                    />
+                                    <DatePicker selected={this.state.expiration} required onChange={this.handleChangeExpiration} />
 
                                 </div>
-                            </div> */}
+                            </div>
                             {/* <div className="form-group">
                     <label htmlFor="ChemicalName" >Category</label>
                     <select class="custom-select mr-sm-2" id="">

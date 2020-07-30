@@ -44,14 +44,15 @@ class GroceryProvider extends Component {
     // }
 
     addGrocery = (grocery) => {
-        let tempGroceries = [...this.state.groceries];
-        grocery.id = v4()
+        //let tempGroceries = [...this.state.groceries];
+        grocery.id = v4();
         let groceries = [...this.state.groceries, grocery]
         this.setState(() => {
             return { groceries: groceries }
         })
     }
 
+    //resturn grocery with id that is clicked
     getGrocery = (id) => {
         const grocery = this.state.groceries.find(grocery => grocery.id === id)
         return grocery;
@@ -72,7 +73,7 @@ class GroceryProvider extends Component {
         let tempGroceries = this.state.groceries;
         const index = tempGroceries.indexOf(this.getGrocery(id));
         const selectedGrocery = tempGroceries[index];
-        //console.log(selectedGrocery)
+        console.log(selectedGrocery)
         this.setState({
             id: selectedGrocery['id'],
             name: selectedGrocery['name'],
@@ -117,9 +118,9 @@ class GroceryProvider extends Component {
 
     onSaveEdit = (id) => {
 
-        if (id !== '') {
+        if (id !== null) {
             console.log(id)
-            const savedRecord = this.state.groceries;
+            const savedRecord = this.state.groceries; //state not saved or change until saved button is clicked
             console.log(savedRecord)
             const index = savedRecord.indexOf(this.getGrocery(id));
             const record = savedRecord[index];
@@ -133,13 +134,16 @@ class GroceryProvider extends Component {
                 groceries: [...this.state.groceries],
                 id: '', name: '', image: '', expiration: '', qty: '', category: ''
             })
+
             console.log(this.state)
             console.log(this.state.updateEdit)
 
         }
     }
 
-
+    searchGrocery = (category) => {
+        console.log('ok')
+    }
 
     render() {
         //console.log(this.state.groceries)
@@ -151,7 +155,8 @@ class GroceryProvider extends Component {
                 removeGrocery: this.removeGrocery,
                 editGrocery: this.editGrocery,
                 onSaveEdit: this.onSaveEdit,
-                updateValue: this.updateValue
+                updateValue: this.updateValue,
+                searchGrocery: this.searchGrocery
             }}>
                 {this.props.children}
             </GroceryContext.Provider>
