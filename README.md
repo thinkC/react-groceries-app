@@ -1,6 +1,6 @@
 # Grocery Inventory Tracker
 
-This is a Single Page Application (SPA) built using React and context api; with this app you will be able to Grocery Inventory Store that tracks expiration and quantity. We will be able to create, read, update and delete items created.
+This is a Single Page Application (SPA) built using React and context api. In this tutorial you will be able to build a  Grocery Inventory Store that tracks expiration and quantity. We will be able to create, read, update and delete items created.
 
 ## Setup
 
@@ -9,7 +9,7 @@ We will use `npx create react app` , this helps us to quickly setup our develope
 ### Installation 
 
 I will be using vscode as my code editor, but we are free to use any code editor.
-To start, we open the command line and cd to where we want to have our app installed, then installation we do
+To start, we open the command line and cd to where we want to have our app installed, and run code below:
 
 ```javascript
 npx create-react-app grocery-inventory-tracker
@@ -21,16 +21,16 @@ For this project we will be using react state and  react context api.
 React Context Api helps us to create a global variable that can be passed around in our react App. Usually data is passed down from parent to child in a typical react app as _props_ . You can read more on [React Context API](https://reactjs.org/docs/context.html) .
 
 ## Folder Structure
-We create __components__ subfolder in _src_ . In the _components_ folder we create the following files, _AddGrocery.js_, _EditGrocery.js_, _GroceryItem.js_, _GroceryList.js_, _Navbar.js_ .
+We create __components__ subfolder in _src_ folder . In the _components_ folder we create the following files, _AddGrocery.js_, _EditGrocery.js_, _GroceryItem.js_, _GroceryList.js_, _Navbar.js_ .
 We also create two other files in the root folder. These are _data.js_ that will host all our grocery objects and a _context.js_ .
 
-![Folder Tree Structure](public/tree-structure.PNG)
+![Folder Tree Structure](public/tree-structure.png)
 
 ## Dependencies
 
 For this app we will require and install the following dependencies
 
-```javascript
+```
 npm install --save react-router-dom uuid moment react-datepicker
 ```
 * react-router-dom - This helps with client-side routing in a Single Page App that allows for navigation without page refreshing.
@@ -40,7 +40,7 @@ npm install --save react-router-dom uuid moment react-datepicker
 
 ## index.html
 
-In our _index.html file we will have two cdn links for fontawesom icons and we use bootstrap for styling and rename the title tag as blow. Notice that we have a div with _id_ root . This is where our app will be displayed.
+In our _index.html_ file we will have two cdn links for fontawesome icons and we use bootstrap for styling and rename the title tag as below. Notice that we have a div with _id_ root . This is where our app will be displayed.
 
 ```html
   <!DOCTYPE html>
@@ -72,4 +72,13 @@ In our _index.html file we will have two cdn links for fontawesom icons and we u
   ```
 
 
-## index.js
+## App.js
+
+Next, in our _App.js_ file we create a class base component and import _React_, _switch_, _route_, _Navbar_, _GroceryList_, _AddGrocery_, _EditGrocery_, as seen below.
+
+When we installed _react-router-dom_ , it comes with 4 things :
+* Browser router - holds all info about our route
+* Switch - for grouping our routes
+* route - this will display specific routes
+* Link - serves as an anchor tag
+

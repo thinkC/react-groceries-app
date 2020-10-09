@@ -73,28 +73,51 @@ class GroceryProvider extends Component {
 
     updateSearchValue = (e, value1) => {
         if (value1 === 'searchCategory') {
-            this.state.searchCategory = e.target.value
+            //this.state.searchCategory = e.target.value
+            this.setState({
+                searchCategory: e.target.value
+            })
         }
     }
 
     updateValue = (e, value1) => {
         if (value1 === 'name') {
             this.state.name = e.target.value
+            // this.setState({
+            //     name: e.target.value
+            // })
+
+
         }
         if (value1 === 'image') {
             this.state.image = e.target.value
+            // this.setState({
+            //     image: e.target.value
+            // })
         }
         if (value1 === 'expiration') {
             this.state.expiration = e.target.value
+            // this.setState({
+            //     expiration: e.target.value
+            // })
         }
         if (value1 === 'category') {
             this.state.category = e.target.value
+            // this.setState({
+            //     category: e.target.value
+            // })
         }
         if (value1 === 'qty') {
             this.state.qty = e.target.value
+            // this.setState({
+            //     qty: e.target.value
+            // })
         }
         if (value1 === 'searchCategory') {
             this.state.searchCategory = e.target.value
+            // this.setState({
+            //     searchCategory: e.target.value
+            // })
         }
 
         const tempArr = [

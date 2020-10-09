@@ -16,7 +16,7 @@ export default class GroceryItem extends Component {
         //return [date.getFullYear(), mnth, day].join("-");
     };
     render() {
-        const { id, name, image, qty, expiration, category, removeGrocery, editGrocery } = this.props.grocery;
+        const { id, name, image, qty, expiration, category } = this.props.grocery;
         console.log(this.props.grocery)
 
         return (
