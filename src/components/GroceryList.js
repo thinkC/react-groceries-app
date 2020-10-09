@@ -4,6 +4,26 @@ import GroceryItem from './GroceryItem'
 
 export default class GroceryList extends Component {
 
+    state = {
+        searchCategory: ''
+    }
+
+    handleChangeSearch = (e) => {
+        this.setState({
+            searchCategory: e.target.value
+        })
+        console.log(this.state.searchCategory)
+    };
+
+
+
+
+
+    // callTwoFunctions = (e, value) => {
+    //     this.handleChangeSearch(e);
+    //     this.searchGrocery(value);
+    // }
+
     render() {
 
 
@@ -17,16 +37,24 @@ export default class GroceryList extends Component {
                                     <tr>
                                         <GroceryConsumer>
                                             {value => {
-                                                console.log(value)
+                                                //console.log(value)
+                                                //console.log(value.searchGrocery)
                                                 const { groceries } = value
-                                                console.log(groceries)
-                                                // groceries.map(grocery => {
-                                                //     return (
-                                                //         <th scope="col"><input type="text" onChange={() => { value.searchGrocery(grocery.category) }} /> <i className="fas fa-search fa-2x"></i></th>
-                                                //     )
-                                                // })
+                                                //console.log(groceries)
+                                                // this.state = {
+                                                //     searchCategory: value.searchCategory
+                                                // }
+                                                // console.log(this.state.searchCategory)
+
+
                                                 return (
-                                                    <th scope="col"><input type="text" onChange={() => { value.searchGrocery('category') }} /> <i className="fas fa-search fa-2x"></i></th>
+                                                    // <th scope="col"><input type="text" value={value.searchCategory} onChange={(e) => { value.searchGrocery(this.state.searchCategory) }, (e) => { value.updateSearchValue(e, 'searchCategory') }} /> <i className="fas fa-search fa-2x"></i></th>
+                                                    //<th scope="col"><input type="text" value={value.searchCategory} onChange={(e) => { value.updateSearchValue(e, 'searchCategory') }} /> <i className="fas fa-search fa-2x"></i></th>
+                                                    //<th scope="col"><input type="text" value={this.state.searchCategory} onChange={(e) => { this.callTwoFunctions(this.state.searchCategory) }} /> <i className="fas fa-search fa-2x"></i></th>
+                                                    //<th scope="col"><input type="text" value={this.state.searchCategory} onChange={this.handleChangeSearch} /> <button onClick={() => { value.searchGrocery(this.state.searchCategory) }}>Click </button><i className="fas fa-search fa-2x"></i></th>
+                                                    <th scope="col"><input type="text" value={value.searchCategory} onChange={value.handleChangeSearch} /> <button onClick={(e) => { value.searchGrocery(e, 'searchCategory') }}>Click </button><i className="fas fa-search fa-2x"></i></th>
+                                                    //<th scope="col"><input type="text" value={this.state.searchCategory} onChange={this.handleChangeSearch} /> <button onClick={() => { this.searchGrocery(this.state.searchCategory) }}>Click </button><i className="fas fa-search fa-2x"></i></th>
+                                                    //<button onClick={() => { value.searchCategory(this.state.searchCategory) }}}>click</button>
                                                 )
                                             }}
                                             {/* <th scope="col"><input type="text" /> <i className="fas fa-search fa-2x"></i></th> */}
@@ -42,7 +70,7 @@ export default class GroceryList extends Component {
                                 <tbody>
                                     <GroceryConsumer>
                                         {(value) => {
-                                            //console.log(value)
+                                            console.log(value)
                                             return value.groceries.map(grocery => {
                                                 return <GroceryItem key={grocery.id} grocery={grocery} />
                                             })

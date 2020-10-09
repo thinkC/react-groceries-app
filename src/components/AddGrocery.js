@@ -18,6 +18,7 @@ export default class AddGrocery extends Component {
         this.setState({
             name: e.target.value
         })
+        console.log(this.state.name)
     }
 
     handleChangeImage = (e) => {
@@ -120,7 +121,7 @@ export default class AddGrocery extends Component {
                 </div> */}
 
                             <div className="form-group">
-                                <label htmlFor="ChemicalName" >Category</label>
+                                <label htmlFor="Category" >Category</label>
                                 <input type="text"
                                     className="form-control"
                                     onChange={this.handleChangeCategory}

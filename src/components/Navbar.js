@@ -6,7 +6,7 @@ import { useLocation, Link } from 'react-router-dom';
 function Navbar() {
     //console.log(groceriesDB)
     let location = useLocation();
-    console.log(location.pathname)
+    //console.log(location.pathname)
     return (
         <div className="container">
             <div className="row">

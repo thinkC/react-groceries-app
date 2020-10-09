@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 import { GroceryConsumer } from '../context';
-import { GroceryDB, groceriesDB } from '../data';
+// import { GroceryDB, groceriesDB } from '../data';
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,9 +17,9 @@ export default class EditGrocery extends Component {
             <div className="container">
                 <GroceryConsumer >
                     {(value) => {
-                        console.log(value)
-                        console.log(value.id)
-                        console.log(value.expiration)
+                        //console.log(value)
+                        //console.log(value.id)
+                        //console.log(value.expiration)
                         return <form >
                             <div className="form-group">
                                 <label htmlFor="Name" >Name</label>

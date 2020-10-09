@@ -16,7 +16,8 @@ export default class GroceryItem extends Component {
         //return [date.getFullYear(), mnth, day].join("-");
     };
     render() {
-        const { id, name, image, qty, expiration, category } = this.props.grocery;
+        const { id, name, image, qty, expiration, category, removeGrocery, editGrocery } = this.props.grocery;
+        console.log(this.props.grocery)
 
         return (
             <GroceryConsumer>
@@ -29,8 +30,9 @@ export default class GroceryItem extends Component {
                         <td>{this.convertDate(expiration)}</td>
                         <td>{category}</td>
                         <td><Link to={"/edit/" + id}><span onClick={() => { value.editGrocery(id) }} ><i className="fas fa-pen"  ></i></span></Link></td>
-                        {/* <td ><span onClick={() => removeGrocery(grocery.id)} ><i className="fas fa-trash"></i></span></td> */}
-                        <td ><span onClick={() => { value.removeGrocery(id) }} ><i className="fas fa-trash"></i></span></td>
+                        <td ><span onClick={() => { value.removeGrocery(id) }} ><i
+
+                            className="fas fa-trash"></i></span></td>
                     </tr>
                 )}
 

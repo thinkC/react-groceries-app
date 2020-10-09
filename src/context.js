@@ -14,8 +14,11 @@ class GroceryProvider extends Component {
         expiration: new Date(),
         category: '',
         image: '',
-        updateEdit: []
+        updateEdit: [],
+        searchCategory: ''
     }
+
+
 
 
     // convertDate = (str) => {
@@ -73,7 +76,7 @@ class GroceryProvider extends Component {
         let tempGroceries = this.state.groceries;
         const index = tempGroceries.indexOf(this.getGrocery(id));
         const selectedGrocery = tempGroceries[index];
-        console.log(selectedGrocery)
+        //console.log(selectedGrocery)
         this.setState({
             id: selectedGrocery['id'],
             name: selectedGrocery['name'],
@@ -82,7 +85,13 @@ class GroceryProvider extends Component {
             image: selectedGrocery['image'],
             category: selectedGrocery['category']
         })
-        console.log(this.state)
+        //console.log(this.state)
+    }
+
+    updateSearchValue = (e, value1) => {
+        if (value1 === 'searchCategory') {
+            this.state.searchCategory = e.target.value
+        }
     }
 
     updateValue = (e, value1) => {
@@ -101,6 +110,10 @@ class GroceryProvider extends Component {
         if (value1 === 'qty') {
             this.state.qty = e.target.value
         }
+        if (value1 === 'searchCategory') {
+            this.state.searchCategory = e.target.value
+        }
+
         const tempArr = [
             this.state.id,
             this.state.name,
@@ -115,6 +128,8 @@ class GroceryProvider extends Component {
         })
         console.log(this.state)
     }
+
+
 
     onSaveEdit = (id) => {
 
@@ -141,8 +156,98 @@ class GroceryProvider extends Component {
         }
     }
 
-    searchGrocery = (category) => {
-        console.log('ok')
+
+
+
+
+    // searchGrocery = (value) => {
+    //     console.log(value)
+    //     if (value !== '') {
+    //         let catergoryArr = [];
+    //         console.log('ok')
+    //         let tempGroceries = this.state.groceries;
+    //         //let aa = tempGroceries.map(grocery => grocery.category)
+    //         // tempGroceries.map((grocery) => {
+    //         //     console.log(grocery)
+    //         //     if (grocery.category === value) {
+    //         //         catergoryArr.push(grocery)
+    //         //     }
+    //         //     console.log(catergoryArr);
+    //         //     this.setState({
+    //         //         groceries: catergoryArr
+    //         //     })
+    //         // })
+
+    //         let bb = tempGroceries.filter((grocery) => grocery.category === value)
+    //         console.log(bb)
+    //         this.setState({
+    //             groceries: bb
+    //         })
+
+    //     } else {
+    //         this.setState({
+    //             groceries: this.state.groceries
+    //         })
+    //     }
+
+    // }
+
+
+    searchGrocery = (e, value) => {
+        console.log(value)
+        // if (value === '') {
+        //     return
+        // }
+        let catergoryArr = [];
+        //console.log('ok');
+
+        let oldGroceries = this.state.groceries.map(grocery => {
+            return {
+                name: grocery.name.toLowerCase(),
+                image: grocery.image,
+                expiration: grocery.expiration,
+                qty: grocery.qty,
+                category: grocery.category
+
+            }
+        });
+        console.log(oldGroceries)
+        if (e !== '') {
+            let newGroceryList = [];
+            // this.setState({
+            //     searchCategory: e.target.value
+            // })
+            //this.state.category = e.target.value;
+            this.handleChangeSearch(e)
+            newGroceryList = oldGroceries.filter(grocery => {
+                grocery.category.includes(this.state.category).toLowerCase()
+            });
+            this.setState({
+                groceries: newGroceryList
+            })
+        } else {
+            this.setState({
+                groceries: this.state.groceries
+            })
+        }
+
+
+        //let tempGroceries = this.state.groceries;
+
+
+        // let bb = this.state.groceries.filter((grocery) => grocery.category === value)
+        // console.log(bb)
+        // let cc = this.state.groceries.filter(grocery => {
+        //     return grocery.category === value
+        // })
+        // this.setState({
+        //     groceries: cc
+        // })
+
+    }
+
+    handleChangeSearch = (e) => {
+        this.state.searchCategory = e.target.value
     }
 
     render() {
@@ -156,7 +261,9 @@ class GroceryProvider extends Component {
                 editGrocery: this.editGrocery,
                 onSaveEdit: this.onSaveEdit,
                 updateValue: this.updateValue,
-                searchGrocery: this.searchGrocery
+                updateSearchValue: this.updateSearchValue,
+                searchGrocery: this.searchGrocery,
+                handleChangeSearch: this.handleChangeSearch
             }}>
                 {this.props.children}
             </GroceryContext.Provider>
