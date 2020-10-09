@@ -24,7 +24,7 @@ React Context Api helps us to create a global variable that can be passed around
 We create __components__ subfolder in _src_ folder . In the _components_ folder we create the following files, _AddGrocery.js_, _EditGrocery.js_, _GroceryItem.js_, _GroceryList.js_, _Navbar.js_ .
 We also create two other files in the root folder. These are _data.js_ that will host all our grocery objects and a _context.js_ .
 
-![Folder Tree Structure](public/tree-structure.png)
+![Folder Tree Structure](public/tree-structure.PNG)
 
 ## Dependencies
 
