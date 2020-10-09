@@ -21,16 +21,6 @@ class GroceryProvider extends Component {
 
 
 
-    // convertDate = (str) => {
-    //     let date = new Date(str),
-    //         mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-    //         day = ("0" + date.getDate()).slice(-2);
-    //     //console.log([date.getFullYear(), mnth, day].join("-"))
-    //     let covertedDate = [date.getFullYear(), mnth, day].join("-");
-    //     //let covertedDate = [date.getFullYear(), mnth, day].join("-");
-    //     return moment(covertedDate, 'YYYYMMDD').fromNow();
-    //     //return [date.getFullYear(), mnth, day].join("-");
-    // };
 
 
     convertDate = (str) => {
@@ -38,13 +28,6 @@ class GroceryProvider extends Component {
         return date.toDateString()
     };
 
-    // addGrocery = (name, image, expiration, qty, category) => {
-    //     let tempGroceries = [...this.state.groceries];
-    //     let singleGrocery = { image: image, name: name, qty: qty, expiration: expiration, category: category, id: v4() };
-    //     this.setState(() => {
-    //         return { groceries: [tempGroceries, singleGrocery] }
-    //     })
-    // }
 
     addGrocery = (grocery) => {
         //let tempGroceries = [...this.state.groceries];
@@ -231,18 +214,6 @@ class GroceryProvider extends Component {
             })
         }
 
-
-        //let tempGroceries = this.state.groceries;
-
-
-        // let bb = this.state.groceries.filter((grocery) => grocery.category === value)
-        // console.log(bb)
-        // let cc = this.state.groceries.filter(grocery => {
-        //     return grocery.category === value
-        // })
-        // this.setState({
-        //     groceries: cc
-        // })
 
     }
 
