@@ -16,10 +16,26 @@ class GroceryProvider extends Component {
         image: '',
         updateEdit: [],
         searchCategory: ''
+
     }
 
 
 
+    // topItem = () => {
+    //     let item = {
+    //         title: 'Groceries Inventory | Tracker',
+    //         topString: 'Total number of grocery items'
+    //     }
+
+    //     return item
+    // }
+
+    //dynamically displays values for the header of the application
+    headerObj = {
+        title: 'Groceries Inventory | Tracker',
+        text: 'Total number of grocery items',
+        img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9'
+    }
 
 
 
@@ -38,9 +54,10 @@ class GroceryProvider extends Component {
         })
     }
 
-    //resturn grocery with id that is clicked
+    //returns grocery with id that is clicked
     getGrocery = (id) => {
         const grocery = this.state.groceries.find(grocery => grocery.id === id)
+        console.log(grocery)
         return grocery;
     }
 
@@ -91,33 +108,18 @@ class GroceryProvider extends Component {
         }
         if (value1 === 'image') {
             this.state.image = e.target.value
-            // this.setState({
-            //     image: e.target.value
-            // })
         }
         if (value1 === 'expiration') {
             this.state.expiration = e.target.value
-            // this.setState({
-            //     expiration: e.target.value
-            // })
         }
         if (value1 === 'category') {
             this.state.category = e.target.value
-            // this.setState({
-            //     category: e.target.value
-            // })
         }
         if (value1 === 'qty') {
             this.state.qty = e.target.value
-            // this.setState({
-            //     qty: e.target.value
-            // })
         }
         if (value1 === 'searchCategory') {
             this.state.searchCategory = e.target.value
-            // this.setState({
-            //     searchCategory: e.target.value
-            // })
         }
 
         const tempArr = [
@@ -132,7 +134,7 @@ class GroceryProvider extends Component {
         this.setState({
             updateEdit: tempArr
         })
-        console.log(this.state)
+        //console.log(this.state)
     }
 
 
@@ -141,10 +143,11 @@ class GroceryProvider extends Component {
 
         if (id !== null) {
             console.log(id)
-            const savedRecord = this.state.groceries; //state not saved or change until saved button is clicked
-            console.log(savedRecord)
-            const index = savedRecord.indexOf(this.getGrocery(id));
-            const record = savedRecord[index];
+            const groceriesArr = this.state.groceries; //state not saved or change until saved button is clicked
+            console.log(groceriesArr)
+            const index = groceriesArr.indexOf(this.getGrocery(id));
+            console.log(index)
+            const record = groceriesArr[index];
             console.log(record)
             record['name'] = this.state.updateEdit[1];
             record['image'] = this.state.updateEdit[2];
@@ -257,7 +260,8 @@ class GroceryProvider extends Component {
                 updateValue: this.updateValue,
                 updateSearchValue: this.updateSearchValue,
                 searchGrocery: this.searchGrocery,
-                handleChangeSearch: this.handleChangeSearch
+                handleChangeSearch: this.handleChangeSearch,
+                headerObj: this.headerObj
             }}>
                 {this.props.children}
             </GroceryContext.Provider>

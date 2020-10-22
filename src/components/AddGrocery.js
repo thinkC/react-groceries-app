@@ -37,6 +37,7 @@ export default class AddGrocery extends Component {
         this.setState({
             expiration: date
         })
+        console.log(this.state.expiration)
     }
 
     handleChangeQty = (e) => {

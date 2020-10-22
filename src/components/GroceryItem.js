@@ -17,7 +17,7 @@ export default class GroceryItem extends Component {
     };
     render() {
         const { id, name, image, qty, expiration, category } = this.props.grocery;
-        console.log(this.props.grocery)
+        //console.log(this.props.grocery)
 
         return (
             <GroceryConsumer>

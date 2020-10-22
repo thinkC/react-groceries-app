@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import Navbar from './components/Navbar';
+import Top from './components/Top';
 import GroceryList from './components/GroceryList';
 import AddGrocery from './components/AddGrocery';
 import EditGrocery from './components/EditGrocery';
@@ -13,7 +13,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <Navbar />
+        <Top />
         <Switch>
           <Route exact path="/" component={GroceryList} />
           <Route path="/add" component={AddGrocery} />
