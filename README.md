@@ -161,7 +161,7 @@ The _GroceryProvider_ then returns a _GroceyContext.Provider_ . Since the _Groce
 
 Lastly, we create a variable _GroceryConsumer_ which is equal to _GroceryContext.Consumer_ and we export both _GroceryProvider_ and _GroceryConsumer_ .
 
-We also create an object _headerObj_, this will be use to dynamcally display text and image for header of our application. We will also create _addGrocery_, _removeGrocery_, _editGrocery_, _onSaveEdit_, _convertDate_ _updateValue_  functions. These will only log to the console for now and add the code later, we then  add them  in our _GroceryContext.Provider_. 
+We also create an object _headerObj_, this will be use to dynamcally display text and image for header of our application. We will also create _addGrocery_, _removeGrocery_, _editGrocery_, _onSaveEdit_, _convertDate_ _changeValue_  functions. These will only log to the console for now and add the code later, we then  add them  in our _GroceryContext.Provider_. 
 
 At this point when we try to _console.log_ the value of _this.state.groceries_ we get no output since the _Provider_ is not set at the top of our application. We do that next in the _index.js_ file.
 
@@ -431,7 +431,7 @@ export default class GroceryList extends Component {
 
 In _GroceryItem_ compoent we import _React_, _GroceryConsumer_, _moment_ from moment (we installed this earlier), and _Link_ from _react-router-dom_ . 
 
-Next, we create convertDate function that converts the date string for _expiration_ to timestamp and we use the _moment_ funtion to convert to friendly format e.g. 10 hours ago. After, the _render_ method we destructure _id_, _name_, _image_, _qty_, _expiration_, _category_ that was passed as _props_ from _GroceryList_ component. We are also using _GroceryConsumer_ here because will need access to two functions _editGrocery_ and __removeGrocery_. These two functions are not created yet, but we will create them later in _context.js. 
+Next, we create convertDate function that converts the date string for _expiration_ to timestamp and we use the _moment_ funtion to convert to friendly format e.g. 10 hours ago. After, the _render_ method we destructure _id_, _name_, _image_, _qty_, _expiration_, _category_ that was passed as _props_ from _GroceryList_ component. We are also using _GroceryConsumer_ here because will need access to two functions _editGrocery_ and _removeGrocery_. These two functions are not created yet, but we will create them later in _context.js_. 
 
 Next, we then pass in the values of _name_, _image_, _qty_, _category_ . Now when we run _npm start_ our application should have all the items displayed on our frontpage. Next we work on the _AddGrocery_ component.
 
@@ -485,8 +485,8 @@ export default class GroceryItem extends Component {
 
 In _AddGrocery_ component, we go ahead and import _React_, _GroceryConsumer_, _DatePicker_ (we installed this as a dependancy before).
 
-We then create _AddGrocery_ class componet and export it. Next we create a state object with _name_, _image_, _category_, _expiration_ and _qty_. After, this we create functions that will handle the state changes for each state properties.
-Afer the render method we return _div_ container with the _AddGrocery_ form.
+We then create _AddGrocery_ class component and export it. Next we create a state object with _name_, _image_, _category_, _expiration_ and _qty_. After, this we create functions that will handle the state changes for each state properties.
+After the render method we return _div_ container with the _AddGrocery_ form.
 
 Notice we are using the _GroceryConsumer_ so that we have access to the _addGrocery_ method, also note the use of the _Datepicker_ for the date calendar. Next we look at the EditGrocery component.
 
@@ -643,7 +643,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="Name" >Name</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'name') }}
+                                    onChange={(e) => { value.changeValue(e, 'name') }}
                                     value={value.name}
                                     required
                                 />
@@ -653,7 +653,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="Image" >Image</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'image') }}
+                                    onChange={(e) => { value.changeValue(e, 'image') }}
                                     value={value.image}
                                     required
                                 />
@@ -663,7 +663,7 @@ export default class EditGrocery extends Component {
                                 <div className="form-control">
                                     <label htmlFor="Quantity" >Quantity</label>
                                     <input type="text"
-                                        onChange={(e) => { value.updateValue(e, 'qty') }}
+                                        onChange={(e) => { value.changeValue(e, 'qty') }}
                                         value={value.qty}
                                         required
                                     />
@@ -685,7 +685,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="ChemicalName" >Category</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'category') }}
+                                    onChange={(e) => { value.changeValue(e, 'category') }}
                                     value={value.category}
                                     required
                                 />
@@ -754,11 +754,11 @@ First we create a temporary array with all groceries. Then using the filter meth
 
 ```
 
-### updateValue
+### changeValue
 This method checks the input value if equals to the string e.g. _name_ and updates the the state properties.
 We created the variable _tempArr_ to get the properties and values of the grocery item to be edited as this will be used later in the _saveEdit_ function.
 ```jsx
-    updateValue = (e, value1) => {
+    changeValue = (e, value1) => {
         if (value1 === 'name') {
             this.state.name = e.target.value;
         }

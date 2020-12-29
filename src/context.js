@@ -97,7 +97,7 @@ class GroceryProvider extends Component {
         }
     }
 
-    updateValue = (e, value1) => {
+    changeValue = (e, value1) => {
         if (value1 === 'name') {
             this.state.name = e.target.value
             // this.setState({
@@ -257,7 +257,7 @@ class GroceryProvider extends Component {
                 removeGrocery: this.removeGrocery,
                 editGrocery: this.editGrocery,
                 onSaveEdit: this.onSaveEdit,
-                updateValue: this.updateValue,
+                changeValue: this.changeValue,
                 updateSearchValue: this.updateSearchValue,
                 searchGrocery: this.searchGrocery,
                 handleChangeSearch: this.handleChangeSearch,

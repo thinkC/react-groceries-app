@@ -25,7 +25,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="Name" >Name</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'name') }}
+                                    onChange={(e) => { value.changeValue(e, 'name') }}
                                     value={value.name}
                                     required
                                 />
@@ -35,7 +35,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="Image" >Image</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'image') }}
+                                    onChange={(e) => { value.changeValue(e, 'image') }}
                                     value={value.image}
                                     required
                                 />
@@ -45,7 +45,7 @@ export default class EditGrocery extends Component {
                                 <div className="form-control">
                                     <label htmlFor="Quantity" >Quantity</label>
                                     <input type="text"
-                                        onChange={(e) => { value.updateValue(e, 'qty') }}
+                                        onChange={(e) => { value.changeValue(e, 'qty') }}
                                         value={value.qty}
                                         required
                                     />
@@ -84,7 +84,7 @@ export default class EditGrocery extends Component {
                                 <label htmlFor="ChemicalName" >Category</label>
                                 <input type="text"
                                     className="form-control"
-                                    onChange={(e) => { value.updateValue(e, 'category') }}
+                                    onChange={(e) => { value.changeValue(e, 'category') }}
                                     value={value.category}
                                     required
                                 />
