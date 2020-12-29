@@ -155,15 +155,15 @@ a, a:hover, a:focus, a:active{
 Next we move to the _context.js file_ and we create a class component and name it _GroceryProvider_ . At the top, we import createContext and _uuid_ and _data.js_ and then create a context object and name it _GroceryContext_. This object has two components: _Provider_ and _Consumer_ . _Provder_ provides all the data for our application, we will set it at the top of our application so that all other component of the application have access to it.
 To use the data that the _Provider_ provides we use the _Consumer_ and we will be able to have access to the data from anywhere in our application.
 
-We then create a _state_ object in the _GroceryProvider_ class with property _groceries_ and set the value to be _groceriesDB_ that we imported from _data.js_ , and set property _name_, _qty_, _category_, _id_, _image_ to an empty string. We set _expiration_ to a _new Date()_ value . We also create a property _updateEdit_ to an emoty array. This will be used later in the app.
+We then create a _state_ object in the _GroceryProvider_ class with property _groceries_ and set the value to be _groceriesDB_ that we imported from _data.js_ , and set property _name_, _qty_, _category_, _id_, _image_ to an empty string. We set _expiration_ to a _new Date()_ value . We also create a property _updateEdit_ to an empty array. This will be used later in the app.
 
-The _GroceryProvider_ then returns a _GroceyContext.Provider_ . Since the _GroceryContext.Provider_ will be at the top of our application we will also return the _children_ i.e `{this.pros.children}` . The provider returns a value which is an object. In our own case `this.state` as seen below.
+The _GroceryProvider_ then returns a _GroceyContext.Provider_ . Since the _GroceryContext.Provider_ will be at the top of our application we will also return the _children_ i.e `{this.props.children}` . The provider returns a value which is an object. In our own case `this.state` as seen below.
 
 Lastly, we create a variable _GroceryConsumer_ which is equal to _GroceryContext.Consumer_ and we export both _GroceryProvider_ and _GroceryConsumer_ .
 
 We also create an object _headerObj_, this will be use to dynamcally display text and image for header of our application. We will also create _addGrocery_, _removeGrocery_, _editGrocery_, _onSaveEdit_, _convertDate_ _updateValue_  functions. These will only log to the console for now and add the code later, we then  add them  in our _GroceryContext.Provider_. 
 
-At this point when we try to _console.log_ the value of _this.state.groceries_ we get no output since the _Provider is not set at the top of our application. We do that next in the _index.js_ file.
+At this point when we try to _console.log_ the value of _this.state.groceries_ we get no output since the _Provider_ is not set at the top of our application. We do that next in the _index.js_ file.
 
 
 
@@ -284,7 +284,7 @@ _react-router-dom_ , it comes with:
 * route - this will display specific routes
 * Link - serves as an anchor tag
 
-Inside _React.Fragment_ is folloed by the _Top_ component which will be displayed at the top of our application . We are using _React.Fragment_ to mimic _HTML_ to serve as a parent _div_ and we export the _App.js_ componenet. We will then add 3 routes, for _Home_ (`/`) which will be the _GroceryList_, routes for adding new Groceries (`/add`) which is the _AddGrocery_ and edit route (`/edit/:id`) which is the _EditGrocery_ . We are have `:id` so as to edit specific Grocery.
+Inside _React.Fragment_ is followed by the _Top_ component which will be displayed at the top of our application . We are using _React.Fragment_ to mimic _HTML_ to serve as a parent _div_ and we export the _App.js_ component. We will then add 3 routes, for _Home_ (`/`) which will be the _GroceryList_, routes for adding new Groceries (`/add`) which is the _AddGrocery_ and edit route (`/edit/:id`) which is the _EditGrocery_ . We are have `:id` so as to edit specific Grocery.
 
  Next we create the _Top_ component.
 
